@@ -1,0 +1,15 @@
+.responsive-btn {
+    width: 100%;
+}
+
+@media (min-width: 792px) {
+    .responsive-btn {
+        width: 45%;
+    }
+}
+
+@media (min-width: 992px) {
+    .responsive-btn {
+        width: 45%;
+    }
+}
