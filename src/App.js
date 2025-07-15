@@ -12,14 +12,20 @@ import ProtectedRoute from './Components/auth/ProtactedRoute/ProtectedRoute';
 import { AuthProvider } from './Components/auth/GlobalAuthcontext/AuthContext';
 import { SnackbarProvider } from 'notistack';
 import { Dark, DarkBtn, Light, LightBtn } from './Components/Global-Theme/GlobalTheme';
-import { ToggleTheme } from './store/useStore';
+import { ScreensToggle, ToggleTheme } from './store/useStore';
 import { motion } from "motion/react"
 import ThemeComponent from './Components/Dashboard/Dashboard-components/ThemeComponent/ThemeComponent';
+import TodoComponent from './Components/Dashboard/Dashboard-components/Dashboard-todoComponent/TodoComponent';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import MobileEmailScreen from './Components/auth/Login/MobileEmailScreen/MobileEmailScreen';
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const { themes } = ToggleTheme();
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const { screen, loginScreen } = ScreensToggle();
 
   function GradientCircularProgress() {
     return (
@@ -43,34 +49,68 @@ function App() {
   const Lbg = Light.mainBackground;
   const DBtn = DarkBtn.backgroundcolor;
   const LBtn = LightBtn.backgroundcolor;
+
+  console.log('scrrne :', screen);
+
   return (
+
     <>
       <motion.div
         transition={{ duration: 0.5, ease: "easeInOut" }}
         initial={{ backgroundColor: themes === "Dark" ? Dbg : Lbg }}
         animate={{ backgroundColor: themes === "Dark" ? Dbg : Lbg }}
-        className='theme-div'
-        style={{ position: 'relative' }}
+        style={{
+          position: 'relative',
+          minHeight: '100dvh',
+          overflowX: 'hidden',
+          scrollbarWidth: "none"
+        }}
+       
       >
         {showBackButton && (
+          <>
+            {isMobile ? <>
+              <motion.span
 
-          <motion.button
-            whileHover={{ scale: 1.08 }}
-            onClick={() => navigate("/")}
-            className='p-2 rounded mx-5  mt-5 w-50 '
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              maxWidth: '135px',
-              background: themes === "Dark" ? DBtn : LightBtn.mainBackground,
-              color: themes === "Dark" ? DarkBtn.txtColor : "white",
-              border: 'none',
-              outline: 'none',
-            }}
-          >
-            Back
-          </motion.button>
+                onClick={() => (loginScreen(), navigate("/"))}
+                className='p-5'
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: "-5%",
+                  background: '',
+                  color: themes === "Dark" ? DarkBtn.txtColor : LightBtn.txtColor,
+                  border: 'none',
+                  outline: 'none',
+                  zIndex: 1,
+
+                }}
+              >
+                <KeyboardBackspaceIcon />
+              </motion.span>
+            </> : <>
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                onClick={() => (navigate("/"))}
+                className='p-2 rounded mx-5  mt-5 w-50 '
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  maxWidth: '135px',
+                  background: themes === "Dark" ? DBtn : LightBtn.mainBackground,
+                  color: themes === "Dark" ? DarkBtn.txtColor : "white",
+                  border: 'none',
+                  outline: 'none',
+                  zIndex: 1,
+                }}
+              >
+                Back
+              </motion.button>
+
+            </>}
+
+          </>
 
         )}
         <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
@@ -78,7 +118,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home navigate={navigate} GradientCircularProgress={GradientCircularProgress} />} />
               <Route path="/login" element={<Login />} />
+
               <Route path="/registration" element={<Regestration />} />
+
 
               <Route
                 path="/dashboard"
@@ -92,6 +134,7 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="counter" element={<Counter />} />
                 <Route path="themepage" element={<ThemeComponent />} />
+                <Route path="todo" element={<TodoComponent />} />
               </Route>
             </Routes>
           </AuthProvider>

@@ -6,11 +6,9 @@
 
 
 body {
+  background-color: transparent;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-size: 800% 800%;
-  height: 100vh;
-  background-repeat: no-repeat;
-  transition: background-color 150ms ease-in-out, color 0.5s ease-in-out !important;
+  transition: background-color 1s ease-in-out, color 0.5s ease-in-out !important;
 }
 
 code {

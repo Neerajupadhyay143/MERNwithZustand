@@ -12,3 +12,11 @@ export const ToggleTheme = create((set) => ({
     lightTheme: () => set({ themes: "Light" }),
     DarkTheme: () => set({ themes: "Dark" }),
 }))
+
+export const ScreensToggle = create((set) => ({
+    screen: "login",
+    emailScreen: () => set({ screen: 'email' }),
+    loginScreen: () => set({ screen: 'login' }),
+    resetpasswordScreen: () => set({ screen: 'resetpassword' }),
+
+}))

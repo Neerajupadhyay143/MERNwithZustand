@@ -14,7 +14,7 @@ function HomeCardComponent({
     buttonText,
     onButtonClick,
     themeColors,
-    hoverScale = 1.05,
+    hoverScale = 1,
 }) {
     const Truncat = (value) => {
         return value.length >= 20 ? value.slice(0, 20) + '...' : value

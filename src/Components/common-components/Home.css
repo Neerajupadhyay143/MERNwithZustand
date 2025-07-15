@@ -1,0 +1,31 @@
+.home-view {
+    background-image: url(../common-components/Common-assets/images/Home-view.jpg);
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.home-view h1 {
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.home-view-span {
+    font-weight: 400;
+    font-size: 1.2em;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.home-view-button {
+    font-family: sans-serif;
+    background-color: aliceblue;
+    color: black;
+    font-weight: 500;
+    border: none;
+    font-size: 1em !important;
+}

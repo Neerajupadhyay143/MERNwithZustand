@@ -2,18 +2,15 @@ import React from 'react'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import image from '../../Dashboard-images/counter.jpg'
 import dlimage from '../../Dashboard-images/Lmode.jpg'
+import Todo from "../../Dashboard-images/Todo.jpg"
 import { useNavigate } from 'react-router-dom'
 import './HomePage.css'
 import Skeleton from '@mui/material/Skeleton'
 import { useAuth } from '../../../auth/GlobalAuthcontext/AuthContext'
-import { motion } from "motion/react"
 import { ToggleTheme } from '../../../../store/useStore'
-import { Dark, DarkBtn, Light, LightBtn } from '../../../Global-Theme/GlobalTheme'
+import { Dark, DarkBtn, Light, LightBtn, } from '../../../Global-Theme/GlobalTheme'
 import HomeCardComponent from '../../../common-components/CardComponent/HomeCardComponent'
 
 function HomePage() {
@@ -71,7 +68,9 @@ function HomePage() {
                 Welcome, {currentUser?.displayName || 'Guest'}!
             </h2>
 
-            <div className="row gap-5 justify-content-center">
+            <div
+
+                className="row gap-5 justify-content-center mb-5 mb-lg-0">
                 {/* Zustand Counter Card */}
                 <div className="col-md-5 col-sm-6 col-lg-3 d-flex justify-content-center">
                     <HomeCardComponent
@@ -84,13 +83,24 @@ function HomePage() {
                         hoverScale={1.09}
                     />
                 </div>
-                <div className="col-md-5 col-sm-6 col-lg-3 d-flex justify-content-center">
+                <div className="col-md-5 col-sm-6 col-lg-3 d-flex justify-content-center  mb-lg-0">
                     <HomeCardComponent
                         image={dlimage}
                         title='Dark/Light Mode by " Zustand "'
                         description='Manage dark and light theme globally using Zustand, a fast and minimal state management tool..'
                         buttonText='Check out'
                         onButtonClick={() => navigate('themepage')}
+                        themeColors={cardTheme}
+                        hoverScale={1.09}
+                    />
+                </div>
+                <div className="col-md-5 col-sm-6 col-lg-3 d-flex justify-content-center  mb-lg-0">
+                    <HomeCardComponent
+                        image={Todo}
+                        title='Todo-List by " Zustand "'
+                        description='Simple API, no prop drilling, fast state updates, scalable and developer-friendly..'
+                        buttonText='Check out'
+                        onButtonClick={() => navigate('todo')}
                         themeColors={cardTheme}
                         hoverScale={1.09}
                     />

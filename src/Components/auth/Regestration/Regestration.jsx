@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import "./Regestration.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '../../../Firebase-auth/firebase-config';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import { useAuth } from '../GlobalAuthcontext/AuthContext';
 import { ToggleTheme } from '../../../store/useStore';
 import { Dark, DarkBtn, Light, LightBtn, LightInput } from '../../Global-Theme/GlobalTheme';
+import GoogleIcon from '@mui/icons-material/Google';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import { motion } from "framer-motion";
 
 function Regestration() {
     const userData = {
@@ -153,13 +156,22 @@ function Regestration() {
     return (
         <>
             <form form onSubmit={handleSubmit} >
-                <div className='vh-100 d-flex justify-content-center align-items-center w-100'>
+                <motion.div
+                    initial={{ opacity: 0, x: 300 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 80,
+                        damping: 12,
+                    }}
+                    className="vh-100 d-flex justify-content-center align-items-center w-100"
+                >
                     <div
                         className='bg-blur p-4 rounded shadow border-0'
-                        style={{ background: themes === "Dark" ? Dark.backgroundcolor : Light.backgroundcolor }}
+                        style={{ background: themes === "Dark" ? "" : Light.backgroundcolor }}
                     >
                         <h1 className='fs-3 text-center border-2 border-primary rounded p-2'>
-                            Registration Form
+                            Sign up
                         </h1>
 
                         <div className='form-data'>
@@ -234,9 +246,32 @@ function Regestration() {
                                 color: themes === "Dark" ? DarkBtn.txtColor : LightBtn.txtColor,
                             }}
                             type='submit'
-                            className='submit-btn mt-3'>Register</button>
+                            className='submit-btn mt-3'
+                        >Register
+                        </button>
+
+                        <div className="d-flex flex-column gap-3 mt-4">
+                            <button
+                                style={{ border: '3px solid #30303D', fontWeight: 100, }}
+                                type="button"
+                                className="btn rounded-4 d-flex align-items-center justify-content-center gap-2"
+                            >
+                                <GoogleIcon />
+                                Sign up with Google
+                            </button>
+
+                            <button
+                                style={{ border: '3px solid #30303D', fontWeight: 100, }}
+                                type="button"
+                                className="btn rounded-4  d-flex align-items-center justify-content-center gap-2"
+                            >
+                                <PhoneAndroidIcon />
+                                Sign up with Phone
+                            </button>
+                        </div>
+
                     </div>
-                </div>
+                </motion.div>
 
             </form >
         </>

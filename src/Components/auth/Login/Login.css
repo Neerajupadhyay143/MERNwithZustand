@@ -1,0 +1,9 @@
+  form span {
+      font-size: 0.9em;
+  }
+
+  @media (max-width: 800px) {
+      .hide-on-mobile {
+          display: none;
+      }
+  }
