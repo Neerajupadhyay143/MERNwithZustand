@@ -19,6 +19,8 @@ import TodoComponent from './Components/Dashboard/Dashboard-components/Dashboard
 import useMediaQuery from '@mui/material/useMediaQuery';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import MobileEmailScreen from './Components/auth/Login/MobileEmailScreen/MobileEmailScreen';
+import TodoHomePage from './Components/Dashboard/Dashboard-components/Dashboard-todoComponent/TodoHomepage/TodoHomePage';
+import TodoTaskScreen from './Components/Dashboard/Dashboard-components/Dashboard-todoComponent/TodoTaskScreen/TodoTaskScreen';
 
 function App() {
   const navigate = useNavigate();
@@ -65,7 +67,7 @@ function App() {
           overflowX: 'hidden',
           scrollbarWidth: "none"
         }}
-       
+
       >
         {showBackButton && (
           <>
@@ -118,14 +120,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Home navigate={navigate} GradientCircularProgress={GradientCircularProgress} />} />
               <Route path="/login" element={<Login />} />
-
               <Route path="/registration" element={<Regestration />} />
 
 
               <Route
                 path="/dashboard"
                 element={
-
                   <ProtectedRoute>
                     <Dashboard />
                   </ProtectedRoute>
@@ -134,7 +134,20 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="counter" element={<Counter />} />
                 <Route path="themepage" element={<ThemeComponent />} />
-                <Route path="todo" element={<TodoComponent />} />
+
+              </Route>
+
+              {/* todo ka alag route */}
+              <Route
+                path="/dashboard/todo"
+                element={
+                  <ProtectedRoute>
+                    <TodoComponent />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<TodoHomePage />} />
+                <Route path="taskscreen" element={<TodoTaskScreen />} />
               </Route>
             </Routes>
           </AuthProvider>

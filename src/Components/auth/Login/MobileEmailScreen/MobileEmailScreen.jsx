@@ -81,6 +81,7 @@ function MobileEmailScreen() {
                                     style={{
                                         background: themes === "Dark" ? "" : LightInput.background,
                                         border: themes === "Dark" ? DarkInput.border : LightInput.border,
+                                        color: themes === "Dark" ? "white" : "black"
                                     }}
                                     className="p-3 rounded w-100 mt-1 text-decoration-none"
                                     placeholder="Enter your Password"

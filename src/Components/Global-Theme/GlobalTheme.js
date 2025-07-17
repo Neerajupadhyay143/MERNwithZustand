@@ -3,28 +3,37 @@ export const Dark = {
     backgroundcolor: '#1f1f1f',
     txtColor: '#e4e4e4',
     subTxt: '#a3a3a3',
-}
+    border: '0',
+    boxShadow: '0 4px 12px rgba(255, 255, 255, 0.06)'
+
+};
+
 
 export const Light = {
     mainBackground: 'white',
     backgroundcolor: '#6200ee',
     txtColor: '#1d1d1d',
     subTxt: '#757575',
+    border: '0',
+    boxShadow: '0 4px 10px rgba(98, 0, 238, 0.3)',
 }
 
 export const DarkBtn = {
+    mainBackground: '#6200ee',
     backgroundcolor: '#6200ee',
     txtColor: 'white',
     border: '0',
     fontsize: '1rem',
+    subTxt: '#757575',
 
 }
 export const LightBtn = {
-    mainBackground: '',
+    mainBackground: 'white',
     backgroundcolor: '#6400CD',
     txtColor: 'white',
     border: 'none',
     fontsize: '1rem',
+    subTxt: '#c7c2c2ff',
     boxShadow: '0 4px 10px rgba(98, 0, 238, 0.3)',   // added shadow here
 };
 

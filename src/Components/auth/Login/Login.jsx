@@ -155,7 +155,7 @@ function Login() {
                         <div className="form-data">
                             <label style={{ color: themes === "Dark" ? Dark.subTxt : Dark.txtColor }}>Password</label>
                             <input
-                                style={{ background: themes === "Dark" ? "" : LightInput.background }}
+                                style={{ background: themes === "Dark" ? "white" : "black" }}
                                 className="p-2 rounded border-0 mt-1"
                                 placeholder="Enter your Password"
                                 name="password"
