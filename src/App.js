@@ -21,6 +21,9 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import MobileEmailScreen from './Components/auth/Login/MobileEmailScreen/MobileEmailScreen';
 import TodoHomePage from './Components/Dashboard/Dashboard-components/Dashboard-todoComponent/TodoHomepage/TodoHomePage';
 import TodoTaskScreen from './Components/Dashboard/Dashboard-components/Dashboard-todoComponent/TodoTaskScreen/TodoTaskScreen';
+import LandingPageAboutUs from './Components/common-components/CardComponent/LandingPage/LandingPageAboutUs';
+import LandingPageContactUs from './Components/common-components/CardComponent/LandingPage/LandingPageContactUs';
+import LandingPagePolicyPage from './Components/common-components/CardComponent/LandingPage/LandingPagePolicyPage';
 
 function App() {
   const navigate = useNavigate();
@@ -121,8 +124,9 @@ function App() {
               <Route path="/" element={<Home navigate={navigate} GradientCircularProgress={GradientCircularProgress} />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Regestration />} />
-
-
+              <Route path="/aboutus" element={<LandingPageAboutUs />} />
+              <Route path="/contactus" element={<LandingPageContactUs />} />
+              <Route path="/terms_and_conditions" element={<LandingPagePolicyPage />} />
               <Route
                 path="/dashboard"
                 element={

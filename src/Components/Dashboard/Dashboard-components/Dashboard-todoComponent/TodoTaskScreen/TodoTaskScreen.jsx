@@ -39,26 +39,26 @@ function TodoTaskScreen() {
 
 
 
-    const requestForToken = async () => {
-        try {
-            const token = await getToken(messaging, {
-                vapidKey: "YOUR_VAPID_KEY",
-            });
-            if (token) {
-                console.log("FCM Token:", token);
-                // Save this token to Firestore under user's doc
-            }
-        } catch (err) {
-            console.error("FCM Token Error:", err);
-        }
-    };
+    // const requestForToken = async () => {
+    //     try {
+    //         const token = await getToken(messaging, {
+    //             vapidKey: "YOUR_VAPID_KEY",
+    //         });
+    //         if (token) {
+    //             console.log("FCM Token:", token);
+    //             // Save this token to Firestore under user's doc
+    //         }
+    //     } catch (err) {
+    //         console.error("FCM Token Error:", err);
+    //     }
+    // };
 
-    const onMessageListener = () =>
-        new Promise((resolve) => {
-            onmessage(messaging, (payload) => {
-                resolve(payload);
-            });
-        });
+    // const onMessageListener = () =>
+    //     new Promise((resolve) => {
+    //         onmessage(messaging, (payload) => {
+    //             resolve(payload);
+    //         });
+    //     });
     return (
         <>
             <TodonavBar />

@@ -15,11 +15,14 @@ function MobileEmailScreen() {
     const { currentUser } = useAuth();
     const { screen, resetpasswordScreen } = ScreensToggle();
     const { themes } = ToggleTheme();
+
     useEffect(() => {
         if (currentUser) {
             navigate('/dashboard');
         }
     }, [currentUser, navigate]);
+
+    
     const handleLogin = (e) => {
         e.preventDefault();
 

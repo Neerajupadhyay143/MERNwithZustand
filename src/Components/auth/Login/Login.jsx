@@ -3,8 +3,8 @@ import "../Regestration/Regestration.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./Login.css"
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../Firebase-auth/firebase-config';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../../../Firebase-auth/firebase-config';
 import { useAuth } from '../GlobalAuthcontext/AuthContext';
 import { ToggleTheme } from '../../../store/useStore';
 import * as motion from "motion/react-client"
@@ -13,6 +13,7 @@ import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import { Dark, DarkBtn, DarkInput, Light, LightBtn, LightInput } from '../../Global-Theme/GlobalTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import MobileScreenLogin from './MobileLogin/MobileScreenLogin';
+import { enqueueSnackbar } from 'notistack';
 function Login() {
 
     const [email, setEmail] = useState("");
@@ -66,6 +67,23 @@ function Login() {
             });
     };
 
+    const handleGoogleLogin = () => {
+        try {
+            signInWithPopup(auth, provider).then((res) => {
+                const user = res.user;
+                console.log("Google Sign-in Success", user);
+                enqueueSnackbar("Logged in successfully!", { variant: 'success' });
+                navigate('/dashboard');
+            }).catch((error) => {
+                console.error("Google Sign-in Error", error);
+                enqueueSnackbar("Login Failed!", { variant: 'error' });
+            })
+
+        } catch (error) {
+            console.log("error comes to login in the dashboard", error);
+
+        }
+    }
     return (
         <>
 
@@ -155,7 +173,7 @@ function Login() {
                         <div className="form-data">
                             <label style={{ color: themes === "Dark" ? Dark.subTxt : Dark.txtColor }}>Password</label>
                             <input
-                                style={{ background: themes === "Dark" ? "white" : "black" }}
+                                style={{ background: themes === "Dark" ? "" : "white" }}
                                 className="p-2 rounded border-0 mt-1"
                                 placeholder="Enter your Password"
                                 name="password"
@@ -168,7 +186,7 @@ function Login() {
                         <span className='d-flex text-center justify-content-center' style={{ color: themes === "Dark" ? Dark.txtColor : Light.txtColor, textAlign: 'center', }}>or</span>
                         <div className="form-data">
                             <div className='d-flex flex-column justify-content-center gap-3 mt-3'>
-                                <button style={{ border: '3px solid #30303D', fontWeight: 100, }} className='bg-transparent d-flex justify-content-center align-content-center p-2 rounded-4 gap-4 '  ><GoogleIcon /> Continue with Google</button>
+                                <button onClick={() => handleGoogleLogin()} style={{ border: '3px solid #30303D', fontWeight: 100, }} className='bg-transparent d-flex justify-content-center align-content-center p-2 rounded-4 gap-4 '  ><GoogleIcon /> Continue with Google</button>
                                 <button style={{ border: '3px solid #30303D', fontWeight: 100, }} className='bg-transparent  d-flex justify-content-center align-content-center p-2 rounded-4 gap-4 ' ><PermPhoneMsgIcon />Continue with Number</button>
                             </div>
                         </div>
